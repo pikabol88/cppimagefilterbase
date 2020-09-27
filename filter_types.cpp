@@ -91,7 +91,7 @@ edge_filter::edge_filter(rect_t & area) :convolution_filter(area) {
         }
     }
     filterMatrix[1][1] = 9;
-    weightsSum += filterMatrix[1][1];
+    weightsSum += filterMatrix[1][1] + 1;
 }
 
 edge_filter::~edge_filter() {
