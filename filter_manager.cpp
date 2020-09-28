@@ -11,8 +11,8 @@ filter_manager::filter_manager(config_reader &config, image_data &image) {
 
 void filter_manager::calculateArea(rect_t rect, image_data &image) {
     applicationArea.up = (rect.up) ? image.h / rect.up : 0;
-    applicationArea.right = (rect.right) ? image.w / rect.right : image.w;
-    applicationArea.bottom = (rect.bottom) ? image.h / rect.bottom : image.h;
+    applicationArea.right = (rect.right) ? image.w / rect.right : 0;
+    applicationArea.bottom = (rect.bottom) ? image.h / rect.bottom : 0;
     applicationArea.left = (rect.left) ? image.w / rect.left : 0;
 }
 bool search_substring(std::string str, std::string substring) {
