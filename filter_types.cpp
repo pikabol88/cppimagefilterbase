@@ -55,6 +55,7 @@ void threshold_filter::apply_filter(image_data & image) {
             }
         }
     }
+    imageCopy.deleteCopy();
 }
 
 int threshold_filter::findMedian(image_data &image, int i, int j) {

@@ -83,6 +83,7 @@ void convolution_filter::applyConvolusion(image_data & image) {
             }
         }
     }
+    imageCopy.deleteCopy();
 }
 
 

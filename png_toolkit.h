@@ -21,6 +21,10 @@ struct image_data
         memcpy(new_image.pixels, pixels, img_size);
         return new_image;
     }
+
+    void deleteCopy() {
+        delete pixels;
+    }
 };
 
 class png_toolkit {
