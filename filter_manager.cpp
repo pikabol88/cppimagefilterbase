@@ -32,7 +32,7 @@ void filter_manager::decideFilterType(std::string name) {
     }
     else if (search_substring(name, "threshold")) {
         //type = THRESHOLD_FILTER;
-        break;
+       
     }
     else if (search_substring(name, "edge")) {
         type = EDGE_FILTER;
