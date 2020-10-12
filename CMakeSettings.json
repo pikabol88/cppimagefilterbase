@@ -1,0 +1,19 @@
+﻿{
+  "configurations": [
+    {
+        "name": "x64-Debug",
+        "generator": "Ninja",
+        "configurationType": "Debug",
+        "inheritEnvironments": [
+            "msvc_x64_x64"
+        ],
+        "buildRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\build\\${name}",
+        "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\install\\${name}",
+        "cmakeCommandArgs":
+        "C:\\Users\\Пользователь\\Documents\\GitHub\\cppimagefilterbase\\config.txt C:\\Users\\Пользователь\\Documents\\GitHub\\cppimagefilterbase\\img\\nature.jpg C:\\Users\\Пользователь\\Documents\\GitHub\\cppimagefilterbase\\img\\nature2.jpg",
+            : null,
+        "buildCommandArgs": "-v",
+        "ctestCommandArgs": ""
+    }
+  ]
+}

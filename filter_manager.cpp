@@ -31,7 +31,8 @@ void filter_manager::decideFilterType(std::string name) {
         type = BLACK_WHITE_FILTER;
     }
     else if (search_substring(name, "threshold")) {
-        type = THRESHOLD_FILTER;
+        //type = THRESHOLD_FILTER;
+        break;
     }
     else if (search_substring(name, "edge")) {
         type = EDGE_FILTER;
