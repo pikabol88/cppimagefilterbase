@@ -49,13 +49,13 @@ filter * filter_manager::getFilter() {
     case RED_FILTER:
         filter = new red_filter(applicationArea);
         return filter;
-  /*  case BLACK_WHITE_FILTER:
+    case BLACK_WHITE_FILTER:
         filter = new black_white_filter(applicationArea);
         return filter;
     case THRESHOLD_FILTER:
         filter = new threshold_filter(applicationArea);
         return filter;
-    case BLUR_FILTER:
+   /* case BLUR_FILTER:
         filter = new blur_filter(applicationArea);
         return filter;
     case EDGE_FILTER:
