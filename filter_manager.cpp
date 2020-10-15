@@ -15,6 +15,7 @@ void filter_manager::calculateArea(rect_t rect, image_data &image) {
     applicationArea.bottom = (rect.bottom) ? image.h / rect.bottom : 0;
     applicationArea.left = (rect.left) ? image.w / rect.left : 0;
 }
+
 bool search_substring(std::string str, std::string substring) {
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
     size_t pos = str.find(substring);
@@ -48,7 +49,7 @@ filter * filter_manager::getFilter() {
     case RED_FILTER:
         filter = new red_filter(applicationArea);
         return filter;
-    case BLACK_WHITE_FILTER:
+  /*  case BLACK_WHITE_FILTER:
         filter = new black_white_filter(applicationArea);
         return filter;
     case THRESHOLD_FILTER:
@@ -59,7 +60,7 @@ filter * filter_manager::getFilter() {
         return filter;
     case EDGE_FILTER:
         filter = new edge_filter(applicationArea);
-        return filter;
+        return filter;*/
     default:
         break;
     }

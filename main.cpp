@@ -17,8 +17,8 @@ int main(int argc, char *argv[]) {
             if (!studTool.load(argv[2]))
                 throw "Can't open image";
             image_data image = studTool.getPixelData();
-            filter_manager manger(config, image);
-            filter *filter = manger.getFilter();
+            filter_manager manager(config, image);
+            filter *filter = manager.getFilter();
             if (filter) {
                 filter->apply_filter(image);
             }

@@ -11,20 +11,20 @@ struct image_data
     int w, h;
     int compPerPixel;
 
-    image_data copy() {
-        image_data new_image;
-        new_image.h = h;
-        new_image.w = w;
-        new_image.compPerPixel = compPerPixel;
-        int img_size = w * h * compPerPixel;
-        new_image.pixels = new stbi_uc[img_size];
-        memcpy(new_image.pixels, pixels, img_size);
-        return new_image;
-    }
+    //image_data copy() {
+    //    image_data new_image;
+    //    new_image.h = h;
+    //    new_image.w = w;
+    //    new_image.compPerPixel = compPerPixel;
+    //    int img_size = w * h * compPerPixel;
+    //    new_image.pixels = new stbi_uc[img_size];
+    //    memcpy(new_image.pixels, pixels, img_size);
+    //    return new_image;
+    //}
 
-    void deleteCopy() {
-        delete pixels;
-    }
+    //void deleteCopy() {
+    //    delete pixels;
+    //}
 };
 
 class png_toolkit {
