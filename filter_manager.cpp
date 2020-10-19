@@ -44,8 +44,7 @@ void filter_manager::decideFilterType(std::string name) {
 
 filter * filter_manager::getFilter() {
     filter *filter;
-    switch (type)
-    {
+    switch (type) {
     case RED_FILTER:
         filter = new red_filter(applicationArea);
         return filter;
@@ -55,12 +54,12 @@ filter * filter_manager::getFilter() {
     case THRESHOLD_FILTER:
         filter = new threshold_filter(applicationArea);
         return filter;
-   /* case BLUR_FILTER:
+    case BLUR_FILTER:
         filter = new blur_filter(applicationArea);
         return filter;
     case EDGE_FILTER:
         filter = new edge_filter(applicationArea);
-        return filter;*/
+        return filter;
     default:
         break;
     }

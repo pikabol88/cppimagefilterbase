@@ -40,6 +40,7 @@ threshold_filter::~threshold_filter() {
     bw_filter = nullptr;
 }
 
+
 void threshold_filter::apply_filter(image_data & image) {
     bw_filter->apply_filter(image);
   //  image_data imageCopy = image.copy();
@@ -86,45 +87,45 @@ int threshold_filter::findMedian(image_data &image, int i, int j) {
         return int(0.5*(pixelsIntensity[size / 2 - 1] + pixelsIntensity[size / 2]));
     }
 }
-//
-//
-//edge_filter::edge_filter(rect_t & area) :convolution_filter(area) {
-//    bw_filter = new black_white_filter(area);
-//    filterMatrix.resize(3);
-//    for (int i = 0, size = filterMatrix.size(); i < size; i++) {
-//        filterMatrix[i].resize(3);
-//        for (int j = 0, size2 = filterMatrix[i].size(); j < size2; j++) {
-//            filterMatrix[i][j] = -1;
-//            weightsSum += filterMatrix[i][j];
-//        }
-//    }
-//    filterMatrix[1][1] = 9;
-//    weightsSum += filterMatrix[1][1] + 1;
-//}
-//
-//edge_filter::~edge_filter() {
-//    delete bw_filter;
-//    bw_filter = nullptr;
-//}
-//
-//void edge_filter::apply_filter(image_data & image) {
-//    bw_filter->apply_filter(image);
-//    applyConvolusion(image);
-//}
-//
-//
-//
-//blur_filter::blur_filter(rect_t & area) :convolution_filter(area) {
-//    filterMatrix.resize(3);
-//    for (int i = 0, size = filterMatrix.size(); i < size; i++) {
-//        filterMatrix[i].resize(3);
-//        for (int j = 0, size2 = filterMatrix[i].size(); j < size2; j++) {
-//            filterMatrix[i][j] = 1;
-//            weightsSum += filterMatrix[i][j];
-//        }
-//    }
-//}
-//
-//void blur_filter::apply_filter(image_data & image) {
-//    applyConvolusion(image);
-//}
+
+
+edge_filter::edge_filter(rect_t & area) :convolution_filter(area) {
+    bw_filter = new black_white_filter(area);
+    filterMatrix.resize(3);
+    for (int i = 0, size = filterMatrix.size(); i < size; i++) {
+        filterMatrix[i].resize(3);
+        for (int j = 0, size2 = filterMatrix[i].size(); j < size2; j++) {
+            filterMatrix[i][j] = -1;
+            weightsSum += filterMatrix[i][j];
+        }
+    }
+    filterMatrix[1][1] = 9;
+    weightsSum += filterMatrix[1][1] + 1;
+}
+
+edge_filter::~edge_filter() {
+    delete bw_filter;
+    bw_filter = nullptr;
+}
+
+void edge_filter::apply_filter(image_data & image) {
+    bw_filter->apply_filter(image);
+    applyConvolusion(image);
+}
+
+
+
+blur_filter::blur_filter(rect_t & area) :convolution_filter(area) {
+    filterMatrix.resize(3);
+    for (int i = 0, size = filterMatrix.size(); i < size; i++) {
+        filterMatrix[i].resize(3);
+        for (int j = 0, size2 = filterMatrix[i].size(); j < size2; j++) {
+            filterMatrix[i][j] = 1;
+            weightsSum += filterMatrix[i][j];
+        }
+    }
+}
+
+void blur_filter::apply_filter(image_data & image) {
+    applyConvolusion(image);
+}
