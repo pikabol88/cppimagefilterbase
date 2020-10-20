@@ -44,14 +44,14 @@ threshold_filter::~threshold_filter() {
 void threshold_filter::apply_filter(image_data & image) {
     bw_filter->apply_filter(image);
   //  image_data imageCopy = image.copy();
-    std::vector<stbi_uc*>pixels;
+    std::vector<stbi_uc>pixels;
     for (int i = filterArea.up; i < filterArea.bottom;i++) {
         for (int j = filterArea.left;j < filterArea.right;j++) {
             int index = getPixelIndex(image, i, j);           
             int median = findMedian(image, i, j);           
           //  int median = findMedian(imageCopy, i, j);
             if (findIntensity(image, index) < median) {
-                pixels.push_back(&(image.pixels[index]));
+                pixels.push_back((image.pixels[index]));
                 /*image.pixels[index] = 0;
                 image.pixels[index + 1] = 0;
                 image.pixels[index + 2] = 0;*/
@@ -59,8 +59,8 @@ void threshold_filter::apply_filter(image_data & image) {
         }
     }
     int length = pixels.size();
-    for (int i = 0;i < length;i++) {
-        *pixels[i] = *(pixels[i]+1) = *(pixels[i] + 2) = 0;
+    for (int i = 0;i < length;i+=3) {
+        pixels[i] = (pixels[i+1]) = (pixels[i+2]) = 0;
     }
     pixels.clear();
     //imageCopy.deleteCopy();
