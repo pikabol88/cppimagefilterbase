@@ -18,7 +18,9 @@ struct image_data
         new_image.compPerPixel = compPerPixel;
         int img_size = w * h * compPerPixel;
         new_image.pixels = new stbi_uc[img_size];
-        memcpy(new_image.pixels, pixels, img_size);
+        for (int i = 0;i < img_size;i++) {
+            new_image.pixels[i] = pixels[i];
+        }        
         return new_image;
     }
 
