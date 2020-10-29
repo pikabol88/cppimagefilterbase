@@ -9,7 +9,7 @@ config_reader::config_reader(std::string path) : filePath(path), stream(path){
 
 config_reader::~config_reader() { 
     stream.close();
-    for (int i = 0;i < data.size;i++) {
+    for (int i = 0;i < data.size();i++) {
         delete data[i];
     }
 }
