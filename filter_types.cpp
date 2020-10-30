@@ -22,8 +22,8 @@ void black_white_filter::apply_filter(image_data & image) {
     for (int i = filterArea.up; i < filterArea.bottom;i++) {
         for (int j = filterArea.left;j < filterArea.right;j++) {
             int index = getPixelIndex(image, i, j);
-            int intensity = findIntensity(image, index);
-            image.pixels[index] = image.pixels[index + 1] = image.pixels[index + 2] =intensity;
+            unsigned char intensity = findIntensity(image, index);
+            image.pixels[index] = image.pixels[index + 1] = image.pixels[index + 2] = intensity;
         }
     }
 }

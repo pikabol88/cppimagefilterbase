@@ -23,8 +23,9 @@ int filter::getPixelIndex(image_data image, int i, int j) {
     return (i * image.w + j)*image.compPerPixel;
 }
 
-int filter::findIntensity(image_data &image, int index) {
-    return int((0.3 * image.pixels[index]) + (0.6 * image.pixels[index + 1]) + (0.1*image.pixels[index + 2]));
+unsigned char filter::findIntensity(image_data &image, int index) {
+    int intensity = ((3 * image.pixels[index]) + (6 * image.pixels[index + 1]) + (1 * image.pixels[index + 2])) / 10;
+    return (unsigned char)intensity;
 }
 
 bool filter::isPixelExist(image_data &image, int i, int j) {

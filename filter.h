@@ -14,7 +14,7 @@ protected:
     rect_t filterArea;   
     bool isPixelExist(image_data &image, int i, int j);
     int getPixelIndex(image_data image, int i, int j);
-    int findIntensity(image_data & image, int index);
+    unsigned char findIntensity(image_data & image, int index);
     void print(image_data &image);
 
 public:
