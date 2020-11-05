@@ -55,9 +55,9 @@ void convolution_filter::checkRange(int *sum) {
     }
 }
 
-unsigned char convolution_filter::findConvolusion(image_data & image, int i, int j, int channel) {
+int convolution_filter::findConvolusion(image_data & image, int i, int j, int channel) {
     int shift = filterMatrix[0].size() / 2;
-    unsigned char sum = 0;
+    int sum = 0;
     for (int ii = 0, size1 = filterMatrix.size(); ii < size1; ii++) {
         for (int jj = 0, size2 = filterMatrix[0].size(); jj < size2; jj++) {
             if (isPixelExist(image, i - shift + ii, j - shift + jj)) {
