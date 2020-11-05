@@ -31,7 +31,7 @@ protected:
     std::vector<std::vector<int>> filterMatrix;
     
     void checkRange(int * sum);
-    int findConvolusion(image_data & image, int i, int j, int channel);
+    unsigned char findConvolusion(image_data & image, int i, int j, int channel);
     void applyConvolusion(image_data &image);
 public:
     convolution_filter(rect_t &area);   

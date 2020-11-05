@@ -41,8 +41,8 @@ threshold_filter::~threshold_filter() {
 void threshold_filter::apply_filter(image_data & image) {
     bw_filter->apply_filter(image);
     std::vector<int>pixelsToZero;
-    for (int i = filterArea.up; i < filterArea.bottom;i++) {
-        for (int j = filterArea.left;j < filterArea.right;j++) {
+    for (int i = filterArea.up; i < filterArea.bottom; ++i) {
+        for (int j = filterArea.left;j < filterArea.right; ++j) {
             int index = getPixelIndex(image, i, j);           
             int median = findMedian(image, i, j);          
             if (findIntensity(image, index) < median) {
