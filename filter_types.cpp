@@ -43,14 +43,14 @@ void threshold_filter::apply_filter(image_data & image) {
     std::vector<int>pixelsToZero;
     for (int i = filterArea.up; i < filterArea.bottom;i++) {
         for (int j = filterArea.left;j < filterArea.right;j++) {
-            int index = getPixelIndex(image, i, j);           
-            int median = findMedian(image, i, j);          
+            int index = getPixelIndex(image, i, j);
+            int median = findMedian(image, i, j);
             if (findIntensity(image, index) < median) {
                 pixelsToZero.push_back(index);
             }
         }
     }
-    for (int index: pixelsToZero) {
+    for (int index : pixelsToZero) {
         image.pixels[index] = image.pixels[index + 1] = image.pixels[index + 2] = 0;
     }
 }
@@ -60,21 +60,24 @@ int threshold_filter::findMedian(image_data &image, int i, int j) {
     int x = i - 2;
     int y = j - 2;
     for (int ii = 0; ii < 5; ii++) {
-        for (int jj = 0; jj < 5; jj++) {
-            if (isPixelExist(image, x + ii, y + jj)) {
-                int index = getPixelIndex(image, x + ii, y + jj);
-                pixelsIntensity.push_back(findIntensity(image, index));
+        if (isVerticalPixelExist(image, x + ii, filterArea)) {
+            for (int jj = 0; jj < 5; jj++) {
+                if (isHorizontalPixelExist(image, y + jj, filterArea)) {
+                    int index = getPixelIndex(image, x + ii, y + jj);
+                    pixelsIntensity.push_back(findIntensity(image, index));
+                }
             }
         }
     }
     nth_element(pixelsIntensity.begin(), pixelsIntensity.begin() + pixelsIntensity.size() / 2, pixelsIntensity.end());
     int size = pixelsIntensity.size();
-    if (size % 2 == 1) {
+    /*if (size % 2 == 1) {
         return pixelsIntensity[size / 2];
     }
     else {
         return int(0.5*(pixelsIntensity[size / 2 - 1] + pixelsIntensity[size / 2]));
-    }
+    }*/
+    return pixelsIntensity[size / 2];
 }
 
 

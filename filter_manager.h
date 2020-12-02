@@ -21,12 +21,10 @@ class filter_manager {
     rect_t applicationArea;
     void calculateArea(rect_t rect, image_data &image);
     void decideFilterType(std::string name);
-    
+
 public:
     filter_manager(config_reader & config, image_data & image);
     filter* getFilter();
 };
 
 #endif // !FILTER_MANAGER
-
-

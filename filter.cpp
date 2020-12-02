@@ -4,8 +4,8 @@
 void filter::print(image_data &image)
 {
     std::cout << "\n\n\n\n";
-    for (int i = filterArea.up; i < 7;i++) {
-        for (int j = filterArea.left;j < 7;j++) {
+    for (int i = filterArea.up; i < filterArea.bottom;i++) {
+        for (int j = filterArea.left;j < filterArea.right;j++) {
             std::cout << "pix[" << i << "][" << j << "]:";
             int index = getPixelIndex(image, i, j);
             std::cout << "(r:" << int(image.pixels[index]);
@@ -28,19 +28,22 @@ unsigned char filter::findIntensity(image_data &image, int index) {
     return (unsigned char)intensity;
 }
 
-bool filter::isPixelExist(image_data &image, int i, int j) {
-    if (i >= 0 && i < image.h) {
-        if (j >= 0 && j < image.w) {
-            return true;
-        }
+bool filter::isVerticalPixelExist(image_data &image, int i, rect_t const &filterArea) {
+    if (i >= filterArea.up && i < filterArea.bottom) {
+        return true;
     }
     return false;
 }
 
+bool filter::isHorizontalPixelExist(image_data &image, int i, rect_t const &filterArea) {
 
+    if (i >= filterArea.left && i < filterArea.right) {
+        return true;
+    }
+    return false;
+}
 
-
-convolution_filter::convolution_filter(rect_t & area): filter(area) {
+convolution_filter::convolution_filter(rect_t & area) : filter(area) {
     weightsSum = 0;
 }
 
@@ -50,7 +53,8 @@ void convolution_filter::checkRange(int *sum) {
         if (*sum >= 256) {
             *sum = 255;
         }
-    } else {
+    }
+    else {
         *sum = 0;
     }
 }
@@ -59,12 +63,14 @@ int convolution_filter::findConvolusion(image_data & image, int i, int j, int ch
     int shift = filterMatrix[0].size() / 2;
     int sum = 0;
     for (int ii = 0, size1 = filterMatrix.size(); ii < size1; ii++) {
-        for (int jj = 0, size2 = filterMatrix[0].size(); jj < size2; jj++) {
-            if (isPixelExist(image, i - shift + ii, j - shift + jj)) {
-                int index =  getPixelIndex(image, i - shift + ii, j - shift + jj);
-                int comp = image.pixels[index + channel];
-                int tmp = filterMatrix[ii][jj] * comp;
-                sum += tmp;
+        if (isVerticalPixelExist(image, i - shift + ii, filterArea)) {
+            for (int jj = 0, size2 = filterMatrix[0].size(); jj < size2; jj++) {
+                if (isHorizontalPixelExist(image, j - shift + jj, filterArea)) {
+                    int index = getPixelIndex(image, i - shift + ii, j - shift + jj);
+                    int comp = image.pixels[index + channel];
+                    int tmp = filterMatrix[ii][jj] * comp;
+                    sum += tmp;
+                }
             }
         }
     }
@@ -86,5 +92,3 @@ void convolution_filter::applyConvolusion(image_data & image) {
     }
     imageCopy.deleteCopy();
 }
-
-

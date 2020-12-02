@@ -28,7 +28,7 @@ void filter_manager::decideFilterType(std::string name) {
     if (search_substring(name, "red")) {
         type = RED_FILTER;
     }
-    else if (search_substring(name, "bw")|| search_substring(name, "blackandwhite")) {
+    else if (search_substring(name, "bw") || search_substring(name, "blackandwhite")) {
         type = BLACK_WHITE_FILTER;
     }
     else if (search_substring(name, "threshold")) {

@@ -11,20 +11,20 @@
 
 class config_reader {
 
-    typedef struct configData_t{
+    typedef struct configData_t {
         std::string filterName;
         rect_t coordinates;
     }configData_t;
 
-private: 
+private:
     std::string filePath;
     std::ifstream stream;
     std::vector<configData_t*>data;
     std::string filterName;
     rect_t coordinates;
 
-public:    
-    
+public:
+
     int count = 0;
     config_reader(std::string path);
     ~config_reader();
@@ -34,6 +34,6 @@ public:
     void setCoordinates(rect_t rect);
     void setFilterName(std::string filter);
     rect_t getCoordinates();
-    std::string getFilterName(); 
+    std::string getFilterName();
 };
 #endif // !CONFIG_READER
